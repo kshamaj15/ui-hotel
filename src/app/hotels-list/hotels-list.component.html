@@ -1,0 +1,58 @@
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                    <form>
+                            <div class="form-row">
+                                <label ><strong>Search</strong></label>
+                                <input type="text" class="form-control" 
+                                placeholder="Search by Hotel Name" #searchTxt (input)="search(searchTxt.value)">
+                            </div>
+                            <div class="form-row">
+                                <label >Sort By Price</label>
+                                <select class="form-control" (change)="sortByPrice($event)">
+                                    <option>--select--</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label><strong>Filter</strong></label>
+                            </div>
+                            <div class="form-row"><br>
+                                <label >Room Type</label>
+                                <select class="form-control" #type (change)="sortByType($event)">
+                                    <option>All</option>
+                                    <option>Private Room</option>
+                                    <option>Other</option>
+                                </select>
+                                <label >Region</label>
+                                <select class="form-control" (change)="sortByRegion($event)">
+                                    <option>All</option>
+                                    <option *ngFor="let r of regionArr">{{r}}</option>
+                                </select>
+                            </div>
+                        </form>
+            </div>
+            <div class="col-9 container-fluid hotel-list">
+                    <div class="row">
+                    <div class="col-4" *ngFor="let hotel of filterHotelList; let i = index">
+                            
+                                    <div class="card" style="width: 18rem; margin-top:30px;">
+                                            <img class="card-img-top" src="{{hotel.img}}" alt="Card image cap">
+                                            <div class="card-body">
+                                              <h5 class="card-title">{{hotel.name}}</h5>
+                                              <p class="card-text">{{hotel.host_name}}</p>
+                                              <p>Price: ${{hotel.price}}</p>
+                                              <p class="card-text">Area: {{hotel.neighbourhood_group}}</p>
+                                              <p>RoomType: ${{hotel.room_type}}</p>
+                                              <button (click)="openModal()" class="btn btn-primary">View details</button>
+                                            </div>
+                                          </div>
+                                </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    
+
+
